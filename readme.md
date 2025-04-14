@@ -109,7 +109,3 @@ This project is licensed under the [MIT License](LICENSE).
 - [Flask Documentation](https://flask.palletsprojects.com/)
 - [scikit-learn](https://scikit-learn.org/)
 - [Pandas](https://pandas.pydata.org/)
-```
-
----
-
