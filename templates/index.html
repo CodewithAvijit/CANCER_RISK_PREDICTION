@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cancer Risk Predictor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Playfair Display', serif; /* Apply Playfair Display font */
+            padding: 40px;
+            background-color: #f5f5f5;
+            background-image: url("{{ url_for('static', filename='bg.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            font-family: 'Playfair Display', serif; /* Apply Playfair Display to input/select */
+        }
+        button {
+            grid-column: span 2;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif; /* Apply Playfair Display to button */
+        }
+        .result-box {
+            max-width: 800px;
+            margin: 30px auto 0;
+            background-color: #e6ffe6;
+            padding: 13px;
+            border-left: 6px solid #28a745;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            text-align: center;
+            font-family: 'Playfair Display', serif; /* Apply Playfair Display to result box */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cancer Risk Predictor</h1>
+
+    <form method="POST" action="/predict">
+        <label for="Age">Age:</label>
+        <input type="number" name="Age" step="any" required>
+
+        <label for="Gender">Gender:</label>
+        <select name="Gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label for="BMI">BMI (Body Mass Index):</label>
+        <input type="number" name="BMI" step="0.1" required>
+
+        <label for="Smoking">Do you smoke?</label>
+        <select name="Smoking" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="GeneticRisk">Genetic Risk:</label>
+        <select name="GeneticRisk" required>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label for="PhysicalActivity">Physical Activity Level:</label>
+        <select name="PhysicalActivity" required>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label for="AlcoholIntake">Alcohol Intake:</label>
+        <select name="AlcoholIntake" required>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label for="CancerHistory">Any Cancer History?</label>
+        <select name="CancerHistory" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+    <div class="result-box">
+        {{ result }}
+    </div>
+    {% endif %}
+
+</body>
+</html>
